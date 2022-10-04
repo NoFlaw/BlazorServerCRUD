@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace BlazorServerCRUD.Infrastructure.Models
 {
-    public class DepartmentDTO
+    public class DepartmentViewModel
     {
         public int DepartmentId { get; set; }
         public string DepartmentName { get; set; }
         public bool? IsActive { get; set; }
-
-        public List<EmployeeDTO> Employees { get; set; }
+        public List<EmployeeViewModel> Employees { get; set; }
     }
 }

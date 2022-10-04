@@ -17,13 +17,14 @@ namespace BlazorServerCRUD.Service
         Task<Employee> GetEmployeeByIdAsync(int employeeId);
         Employee AddEmployee(Employee employee);
         Task<Employee> AddEmployeeAsync(Employee employee);
+        Task<AddEmployeeViewModel> AddEmployeeViewModelAsync(AddEmployeeViewModel employee);
         bool RemoveEmployee(Employee employee);
         Task<bool> RemoveEmployeeAsync(Employee employee);
         Employee UpdateEmployee(Employee employee);
         Task<Employee> UpdateEmployeeAsync(Employee employee);
         IQueryable<Employee> GetAllEmployees();
         Task<IEnumerable<Employee>> GetAllEmployeesAsync();
-        Task<List<EmployeeDTO>> GetAllEmployeeDtosAsync();
+        Task<List<EmployeeViewModel>> GetAllEmployeeViewModel();
         int SaveChanges();
         Task<int> SaveChangesAsync();
     }

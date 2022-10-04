@@ -17,6 +17,7 @@ using Microsoft.EntityFrameworkCore;
 using AutoMapper;
 using AutoMapper.Internal;
 using BlazorServerCRUD.Infrastructure.Profiles;
+using BlazorServerCRUD.UI.Service;
 
 namespace BlazorServerCRUD.UI
 {
@@ -49,6 +50,7 @@ namespace BlazorServerCRUD.UI
             services.AddSingleton(mapper);
             services.AddScoped(typeof(IEmployeeService), typeof(EmployeeService));
             services.AddScoped(typeof(IDepartmentService), typeof(DepartmentService));
+            services.AddTransient<HelperService>();
             services.AddSingleton<WeatherForecastService>();
 
             //Check to make sure AutoMapper maps/profiles are working properly...

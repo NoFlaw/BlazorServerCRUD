@@ -1,10 +1,10 @@
-﻿using AutoMapper;
-using BlazorServerCRUD.Data.Entities;
-using BlazorServerCRUD.Infrastructure.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
+using BlazorServerCRUD.Data.Entities;
+using BlazorServerCRUD.Infrastructure.Models;
 
 namespace BlazorServerCRUD.Infrastructure.Profiles
 {
@@ -13,10 +13,10 @@ namespace BlazorServerCRUD.Infrastructure.Profiles
         public DepartmentProfile()
         {
             //Source, Destination
-            CreateMap<DepartmentDTO, Department>();
+            CreateMap<DepartmentViewModel, Department>();
 
             //Source, Destination
-            CreateMap<Department, DepartmentDTO>();
+            CreateMap<Department, DepartmentViewModel>();
         }
     }
 }

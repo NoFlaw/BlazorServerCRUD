@@ -9,16 +9,23 @@ using System.Threading.Tasks;
 
 namespace BlazorServerCRUD.UI.Pages
 {
-    public class EmployeesBase : ComponentBase
+    public class AddEmployeeBase : ComponentBase
     {
-        public List<EmployeeViewModel> EmployeeList;
-
+        public AddEmployeeViewModel NewEmployee = new AddEmployeeViewModel();
+        
         [Inject] public HelperService HelperService { get; set; }
         [Inject] public IEmployeeService EmployeeService { get; set; }
+        
 
-        protected override async Task OnInitializedAsync()
+        protected async void CreateEmployee()
         {
-            EmployeeList = await Task.Run(() => EmployeeService.GetAllEmployeeViewModel());
+            await EmployeeService.AddEmployeeViewModelAsync(NewEmployee);            
+            HelperService.NavigateTo("/Employees", true);
+        }
+        
+        protected void Cancel()
+        {
+            HelperService.NavigateTo("/Employees", false);
         }
     }
 }

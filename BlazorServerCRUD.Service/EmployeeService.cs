@@ -89,12 +89,14 @@ namespace BlazorServerCRUD.Service
                 .ToListAsync();
         }
 
-        public async Task<List<EmployeeDTO>> GetAllEmployeeDtosAsync()
+        public async Task<List<EmployeeViewModel>> GetAllEmployeeViewModel()
         {
-            return await GetQuery()
-                .Include(x => x.Department)
-                .ProjectTo<EmployeeDTO>(_mapper.ConfigurationProvider)
-                .ToListAsync();            
+            return await _mapper.ProjectTo<EmployeeViewModel>(GetQuery().Include(x => x.Department)).ToListAsync();
+
+            //return await GetQuery()
+            //    .Include(x => x.Department)
+            //    .ProjectTo<EmployeeDTO>(_mapper.ConfigurationProvider)
+            //    .ToListAsync();            
         }
 
         public async Task<Employee> GetEmployeeByIdAsync(int employeeId)
@@ -111,6 +113,19 @@ namespace BlazorServerCRUD.Service
                 throw new Exception("Employee Name cannot be null");
 
             return await base.AddAsync(employee);
+        }
+
+        public async Task<AddEmployeeViewModel> AddEmployeeViewModelAsync(AddEmployeeViewModel employee)
+        {
+            if (employee == null)
+                throw new Exception("Employee cannot be null");
+
+            if (string.IsNullOrEmpty(employee?.EmployeeName))
+                throw new Exception("Employee Name cannot be null");
+
+            await base.AddAsync(_mapper.Map<AddEmployeeViewModel, Employee>(employee));
+
+            return employee;
         }
 
         public async Task<bool> RemoveEmployeeAsync(Employee employee)
@@ -134,6 +149,5 @@ namespace BlazorServerCRUD.Service
 
 
         #endregion
-
     }
 }
